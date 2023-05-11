@@ -16,7 +16,7 @@ export default function index() {
 
   const onClickSubmit = async () => {
     const result = await 나의함수()
-    console.log(result)
+    console.log(result.data)
   }
   return (
     <>
