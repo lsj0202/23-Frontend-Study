@@ -1,21 +1,23 @@
 import { gql,useMutation } from '@apollo/client';
-import { useState } from 'react'
 
 const CREATE_PRODUCT = gql`
-  mutation createproduct($seller: String, $createProductInput: CreateProductInput!){
-    createproduct(seller:$seller, createProductInput:$createProductInput){
+  mutation createProduct($seller : String, $createProductInput : CreateProductInput!) {
+    createProduct(seller : $seller, createProductInput : $createProductInput){
       _id
       number
       message
     }
   }
 `
+
 export default function index() {
-  const [나의함수] = useMutation(CREATE_PRODUCT)
+  const [create_product] = useMutation(CREATE_PRODUCT)
+
+
 
   const onClickSubmit = async () => {
-    const result = await 나의함수({
-      variables: {
+    const result = await create_product({
+      variables : {
         seller: "훈이",
         createProductInput : {
           name: "훈이동산",
