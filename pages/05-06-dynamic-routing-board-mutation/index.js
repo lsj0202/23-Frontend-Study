@@ -1,5 +1,6 @@
 import { gql,useMutation } from '@apollo/client';
 import { useState } from 'react'
+import { useRouter } from 'next/router';
 
 const CREATE_BOARD = gql`
   mutation createBoard($writer: String, $title: String, $contents: String){
@@ -12,21 +13,28 @@ const CREATE_BOARD = gql`
 `
 export default function index() {
   const [나의함수] = useMutation(CREATE_BOARD)
+  const router = useRouter();
 
   const [writer, setWriter] = useState("");
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
 
   const onClickSubmit = async () => {
-    const result = await 나의함수({
-      variables: {
-        writer: writer,
-        title: title,
-        contents: contents,
-      }
-    })
-    alert(result.data.createBoard.message)
-    console.log(result)
+    try{
+      const result = await 나의함수({
+        variables: {
+          writer: writer,
+          title: title,
+          contents: contents,
+        }
+      })
+      alert(result.data.createBoard.message)
+      console.log(result)
+      router.push(`/05-06-query-moved/${result.data.createBoard.number}`)
+
+    } catch(error){
+      alert(error.message)
+    }
   }
 
   const onChangeWriter = (event) => {

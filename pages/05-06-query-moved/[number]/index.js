@@ -18,7 +18,7 @@ function index() {
 
   console.log(router)
   const { data } = useQuery(FETCH_BOARD, {
-    variables: { number: Number(router.query.qqq) }
+    variables: { number: Number(router.query.number) }
   })
   console.log(data)
   return (
