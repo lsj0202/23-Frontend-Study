@@ -46,7 +46,7 @@ export default function TypeScript() {
     return num1 + num2 + unit
   }
   const result = add(1000, 2000, "원")
-
+  
 
 
 }
